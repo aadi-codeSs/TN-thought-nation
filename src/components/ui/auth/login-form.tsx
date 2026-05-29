@@ -147,7 +147,7 @@ export function LoginForm() {
         </div>
 
         <Button type="submit" className=" mt-2 w-full " isLoading={isPending}>
-          Sign In
+          Sign in
         </Button>
       </form>
 
@@ -171,7 +171,7 @@ export function LoginForm() {
           href="/signup"
           className="font-medium text-foreground text-primary hover:text-white hover:underline "
         >
-          Sign up for free
+          Sign up
         </Link>
       </p>
     </div>
