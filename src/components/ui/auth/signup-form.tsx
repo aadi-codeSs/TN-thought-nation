@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useTransition } from "react";
@@ -7,6 +6,8 @@ import Link from "next/link";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { EyeOff, Eye } from "lucide-react";
+import { useState } from "react";
 
 import { toast } from "sonner";
 
@@ -23,6 +24,7 @@ import { OAuthButton } from "./oauth-button";
 
 export function SignupForm() {
   const [isPending, startTransition] = useTransition();
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -59,18 +61,17 @@ export function SignupForm() {
   }
 
   return (
-  <div className="space-y-8">
+    <div className="space-y-8">
+      <OAuthButton />
 
-    <OAuthButton />
+      <div className="relative">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-border/80" />
+        </div>
 
-    <div className="relative">
-      <div className="absolute inset-0 flex items-center">
-        <div className="w-full border-t border-border/80" />
-      </div>
-
-      <div className="relative flex justify-center">
-        <span
-          className="
+        <div className="relative flex justify-center">
+          <span
+            className="
             bg-background
             px-3
             text-[11px]
@@ -79,34 +80,30 @@ export function SignupForm() {
             tracking-[0.12em]
             text-muted-foreground
           "
-        >
-          Or continue with
-        </span>
+          >
+            Or continue with
+          </span>
+        </div>
       </div>
-    </div>
 
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <div className="space-y-2">
+          <Label
+            htmlFor="username"
+            className="font-heading text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground"
+          >
+            Username
+          </Label>
 
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="space-y-6"
-    >
-      <div className="space-y-2">
-        <Label
-          htmlFor="username"
-          className="font-heading text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground"
-        >
-          Username
-        </Label>
-
-        <Input
-          id="username"
-          type="username"
-          placeholder="aditya123"
-          disabled={isPending}
-          error={!!errors.username}
-          aria-invalid={!!errors.username}
-          aria-describedby="username-error"
-          className="
+          <Input
+            id="username"
+            type="username"
+            placeholder="aditya123"
+            disabled={isPending}
+            error={!!errors.username}
+            aria-invalid={!!errors.username}
+            aria-describedby="username-error"
+            className="
             h-11
             rounded-lg
             border-border
@@ -121,41 +118,42 @@ export function SignupForm() {
             focus-visible:ring-2
             focus-visible:ring-primary/20
           "
-          {...register("username")}
-        />
+            {...register("username")}
+          />
 
-        {errors.username && (
-          <p
-            id="username-error"
-            className="mt-1 text-xs font-medium text-destructive"
+          {errors.username && (
+            <p
+              id="username-error"
+              className="mt-1 text-xs font-medium text-destructive"
+            >
+              {errors.username.message}
+            </p>
+          )}
+        </div>
+
+        <div className="space-y-2">
+          <Label
+            htmlFor="password"
+            className="font-heading text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground"
           >
-            {errors.username.message}
-          </p>
-        )}
-      </div>
-
-      <div className="space-y-2">
-        <Label
-          htmlFor="password"
-          className="font-heading text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground"
-        >
-          Password
-        </Label>
-
-        <Input
-          id="password"
-          type="password"
-          placeholder="••••••••"
-          disabled={isPending}
-          error={!!errors.password}
-          aria-invalid={!!errors.password}
-          aria-describedby="password-error"
-          className="
+            Password
+          </Label>
+          <div className="relative">
+            <Input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="••••••••"
+              disabled={isPending}
+              error={!!errors.password}
+              aria-invalid={!!errors.password}
+              aria-describedby="password-error"
+              className="
             h-11
             rounded-lg
             border-border
             bg-[#0a0a0a]
             px-4
+            pr-10
             text-sm
             text-foreground
             placeholder:text-muted-foreground/60
@@ -165,23 +163,69 @@ export function SignupForm() {
             focus-visible:ring-2
             focus-visible:ring-primary/20
           "
-          {...register("password")}
-        />
+              {...register("password")}
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              className="
+            absolute
+            right-3
+            top-1/2
+            -translate-y-1/2
+            text-muted-foreground
+            hover:text-foreground
+            transition-colors
+          "
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? (
+                <EyeOff className="h-4 w-4" />
+              ) : (
+                <Eye className="h-4 w-4" />
+              )}
+            </button>
+          </div>
 
-        {errors.password && (
-          <p
-            id="password-error"
-            className="mt-1 text-xs font-medium text-destructive"
+          {errors.password && (
+            <p
+              id="password-error"
+              className="mt-1 text-xs font-medium text-destructive"
+            >
+              {errors.password.message}
+            </p>
+          )}
+        </div>
+
+        <p className="text-center text-sm text-muted-foreground text-left">
+          By continuing, I agree to ThoughtNation's{" "}
+          <Link
+            href="/terms"
+            className="underline underline-offset-4 hover:text-foreground transition-colors"
           >
-            {errors.password.message}
-          </p>
-        )}
-      </div>
+            terms
+          </Link>
+          ,{" "}
+          <Link
+            href="/terms"
+            className="underline underline-offset-4 hover:text-foreground transition-colors"
+          >
+            privacy policy
+          </Link>
+          , and{" "}
+          <Link
+            href="/terms"
+            className="underline underline-offset-4 hover:text-foreground transition-colors"
+          >
+            cookie policy
+          </Link>
+          .
+        </p>
 
-      <Button
-        type="submit"
-        isLoading={isPending}
-        className="
+        <Button
+          type="submit"
+          isLoading={isPending}
+          className="
           mt-2
           h-11
           w-full
@@ -196,17 +240,16 @@ export function SignupForm() {
           hover:cursor-pointer
           active:scale-[0.99]
         "
-      >
-        Create Account
-      </Button>
-    </form>
-    
+        >
+          Sign Up
+        </Button>
+      </form>
 
-    <p className="text-center text-sm text-muted-foreground">
-      Already have an account?{" "}
-      <Link
-        href="/login"
-        className="
+      <p className="text-center text-sm text-muted-foreground">
+        Already have an account?{" "}
+        <Link
+          href="/login"
+          className="
           font-medium
           text-foreground
           transition-colors
@@ -215,10 +258,10 @@ export function SignupForm() {
           hover:text-white
           hover:underline
         "
-      >
-        Sign in here
-      </Link>
-    </p>
-  </div>
-);
+        >
+          Log in
+        </Link>
+      </p>
+    </div>
+  );
 }
