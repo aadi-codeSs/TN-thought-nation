@@ -50,8 +50,10 @@ model Thought {
   description     String?     @db.Text
   url         String?     @db.Text
   type        ContentType @default(THOUGHT)
+
   thumbnail   String?     @db.Text
-  metadata    Json?       
+  metadata    Json?
+         
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
 

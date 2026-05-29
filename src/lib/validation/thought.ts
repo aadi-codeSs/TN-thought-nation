@@ -11,3 +11,11 @@ export const CreateThoughtSchema = z.object({
 });
 
 export type CreateThoughtInput = z.infer<typeof CreateThoughtSchema>
+
+export interface DashboardFilters {
+    search?:            String
+    type?:              ContentType
+    tag?:               String
+    favoritesOnly?:     boolean
+    sort?:              "newest" | "oldest"
+}
