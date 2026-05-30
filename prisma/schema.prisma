@@ -53,6 +53,7 @@ model Thought {
   type        ContentType @default(THOUGHT)
 
   thumbnail   String?     @db.Text
+  siteName    String?
   metadata    Json?
          
   createdAt   DateTime    @default(now())

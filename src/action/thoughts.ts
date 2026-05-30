@@ -59,50 +59,62 @@ export async function createThought(formData: unknown) {
     siteName = metadata.siteName;
   }
 
-  await prisma.$transaction(async (tx) => {
-    const thought = await tx.thought.create({
-      data: {
-        userId,
-        title,
-        description,
-        url,
-        type,
-        thumbnail,
-        siteName,
-      },
-    });
+  const thought = await prisma.thought.create({
+  data: {
+    userId,
+    title,
+    description,
+    url,
+    type,
+    thumbnail,
+    siteName,
+  },
+});
 
-    for (const tagName of tags) {
-      const normalizedTag = tagName.toLowerCase().trim();
+//   await prisma.$transaction(async (tx) => {
+//     const thought = await tx.thought.create({
+//       data: {
+//         userId,
+//         title,
+//         description,
+//         url,
+//         type,
+//         thumbnail,
+//         siteName,
+//       },
+//     });
 
-      const tag = await tx.tag.upsert({
-        where: {
-          userId_name: {
-            userId,
-            name: normalizedTag,
-          },
-        },
-        create: {
-          userId,
-          name: normalizedTag,
-        },
-        update: {},
-      });
+//     for (const tagName of tags) {
+//       const normalizedTag = tagName.toLowerCase().trim();
 
-      await tx.tagsOnThoughts.create({
-        data: {
-          thoughtId: thought.id,
-          tagId: tag.id,
-        },
-      });
-    }
-  });
+//       const tag = await tx.tag.upsert({
+//         where: {
+//           userId_name: {
+//             userId,
+//             name: normalizedTag,
+//           },
+//         },
+//         create: {
+//           userId,
+//           name: normalizedTag,
+//         },
+//         update: {},
+//       });
 
-  revalidatePath("/dashboard");
+//       await tx.tagsOnThoughts.create({
+//         data: {
+//           thoughtId: thought.id,
+//           tagId: tag.id,
+//         },
+//       });
+//     }
+//   });
 
-  return {
-    success: true,
-  };
+//   revalidatePath("/dashboard");
+
+//   return {
+//     success: true,
+//   };
 }
 
   export async function toggleFavorite(thoughtId: string) {
