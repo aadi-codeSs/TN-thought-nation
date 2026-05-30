@@ -3,10 +3,11 @@ import type { ComponentPropsWithoutRef } from "react";
 
 import { Loader2 } from "lucide-react";
 
-type ButtonProps = ComponentPropsWithoutRef<"button"> & {
+interface ButtonProps
+  extends ComponentPropsWithoutRef<"button"> {
   isLoading?: boolean;
   variant?: "primary" | "secondary" | "outline";
-};
+}
 
 const baseStyles = `
   inline-flex items-center justify-center

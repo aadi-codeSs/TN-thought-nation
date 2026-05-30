@@ -22,6 +22,7 @@ enum ContentType {
   YOUTUBE
   TWITTER
   DOC
+  LINK
 }
 
 model User {
@@ -72,8 +73,9 @@ model Tag {
   userId    String
   user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
   thoughts  TagsOnThoughts[]
+  
 
-  @@unique([name, userId])
+  @@unique([userId, name])
   @@index([userId])
 }
 
@@ -97,6 +99,7 @@ model Favorite {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   thought   Thought  @relation(fields: [thoughtId], references: [id], onDelete: Cascade)
 
+  @@unique([userId, thoughtId])
   @@unique([userId])
   @@index([userId])
 }
