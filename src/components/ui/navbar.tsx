@@ -91,10 +91,6 @@ export function Navbar({
         py-12
       "
     >
-
-      <div>
-        <Button/>
-      </div>
       {/* Search */}
       <div className="relative w-full max-w-sm">
         <Search
@@ -117,13 +113,13 @@ export function Navbar({
             h-9 w-full
             rounded-md
             border border-input
-            bg-background
+            bg-[#2B2B2B]
             pl-9 pr-4
             text-sm
             placeholder:text-muted-foreground
             focus:outline-none
             focus:ring-2
-            focus:ring-ring
+            focus: ring-[#193a29]
           "
         />
       </div>
@@ -136,12 +132,13 @@ export function Navbar({
           className="
             inline-flex items-center gap-2
             rounded-md
-            bg-primary
+            bg-[#193a29]
             px-3 py-2
             text-sm font-medium
             text-primary-foreground
             transition-colors
             hover:opacity-90
+            cursor-pointer
           "
         >
           <Plus size={16} />
@@ -168,7 +165,7 @@ export function Navbar({
               absolute right-1 top-1
               h-2 w-2
               rounded-full
-              bg-primary
+              bg-[#193a29]
             "
           />
         </button>

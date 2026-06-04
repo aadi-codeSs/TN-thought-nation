@@ -11,6 +11,8 @@ import {
 import { ContentType } from "@/src/generated/prisma/enums";
 
 import { Navbar } from "../navbar";
+import Image from "next/image";
+import logoimage from "@/public/logo.png"
 
 import {
   LayoutGrid,
@@ -113,27 +115,13 @@ export function Sidebar({
         <div className="flex items-center justify-between px-2">
           {!isCollapsed && (
             <div className="flex items-center gap-2">
-              <div
-                className="
-                  flex h-8 w-8
-                  items-center justify-center
-                  rounded-md
-                  bg-primary
-                  text-primary-foreground
-                  font-bold
-                "
-              >
-                TN
-              </div>
-
-              <span
-                className="
-                  text-sm
-                  font-medium
-                "
-              >
-                Thought Nation
-              </span>
+             <Image
+             src = {logoimage}
+             alt="Logo image of TN: Thought Nation"
+             height={80}
+             width={80}
+             className="cursor-pointer "
+             />
             </div>
           )}
 
@@ -153,7 +141,9 @@ export function Sidebar({
               hidden md:block
               rounded-md
               border border-border
+              cursor-pointer
               p-1.5
+              bg-[#193a29]
             "
           >
             {isCollapsed ? (
@@ -168,7 +158,7 @@ export function Sidebar({
           </button>
         </div>
 
-        <nav className="space-y-1">
+        <nav className="space-y-1 ">
           {navItems.map(
             (item) => {
               const Icon =
@@ -191,7 +181,7 @@ export function Sidebar({
                   href={item.href}
                   className={`
                     flex items-center gap-3
-                    rounded-lg px-3 py-2
+                    rounded-lg px-3.5 py-2
                     text-sm
                     transition-colors
 
