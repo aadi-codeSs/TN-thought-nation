@@ -10,6 +10,8 @@ import {
 
 import { ContentType } from "@/src/generated/prisma/enums";
 
+import { Navbar } from "../navbar";
+
 import {
   LayoutGrid,
   FileText,

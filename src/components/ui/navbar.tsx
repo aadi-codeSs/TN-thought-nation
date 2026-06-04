@@ -3,6 +3,24 @@
 import { useEffect, useState } from "react";
 
 import { useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
+import logo from '@/public/logo.png'
+
+
+import {
+  LayoutGrid,
+  FileText,
+  Bookmark,
+  Settings,
+  Hash,
+  ChevronLeft,
+  ChevronRight,
+  Play,
+  MessageCircle,
+} from "lucide-react";
+
+const DASHBOARD_ROUTE =
+  "/dashboard";
 
 import {
   Search,
@@ -13,6 +31,7 @@ import {
 
 import { Dropdown } from "./dropdown";
 import { LogoutButton } from "./auth/logout";
+import { Button } from "./Button";
 
 interface NavbarProps {
   onOpenAddModal: () => void;
@@ -69,8 +88,13 @@ export function Navbar({
         border-b border-border
         bg-background/80
         px-6 backdrop-blur
+        py-12
       "
     >
+
+      <div>
+        <Button/>
+      </div>
       {/* Search */}
       <div className="relative w-full max-w-sm">
         <Search
