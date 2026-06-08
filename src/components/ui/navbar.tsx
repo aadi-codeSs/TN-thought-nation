@@ -142,7 +142,7 @@ export function Navbar({
           "
         >
           <Plus size={16} />
-          <span>Capture Thought</span>
+          <span className=" tracking-tighter ">Capture Thought</span>
         </button>
 
         <button

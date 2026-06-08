@@ -27,9 +27,6 @@ import {
   Calendar,
 } from "lucide-react";
 
-Youtube: <Play size={14} />
-Twitter: <MessageCircle size={14} />
-
 import { toast } from "sonner";
 
 import { toggleFavorite, deleteThought } from "@/src/action/thoughts";
