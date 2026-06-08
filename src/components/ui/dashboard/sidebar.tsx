@@ -143,7 +143,7 @@ export function Sidebar({
               border border-border
               cursor-pointer
               p-1.5
-              bg-[#193a29]
+              bg-primary
             "
           >
             {isCollapsed ? (

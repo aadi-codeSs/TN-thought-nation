@@ -176,6 +176,7 @@ export function ThoughtCard({
             >
               <Bookmark
                 size={14}
+                className=" cursor-pointer "
                 fill={
                   isFavorite
                     ? "currentColor"
@@ -189,6 +190,7 @@ export function ThoughtCard({
               aria-label="Delete thought"
               onClick={handleDelete}
               disabled={isPending}
+              className=" cursor-pointer "
             >
               <Trash2 size={14} />
             </button>

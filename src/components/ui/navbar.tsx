@@ -119,7 +119,7 @@ export function Navbar({
             placeholder:text-muted-foreground
             focus:outline-none
             focus:ring-2
-            focus: ring-[#193a29]
+            focus: ring-primary
           "
         />
       </div>
@@ -132,7 +132,7 @@ export function Navbar({
           className="
             inline-flex items-center gap-2
             rounded-md
-            bg-[#193a29]
+            bg-primary
             px-3 py-2
             text-sm font-medium
             text-primary-foreground
@@ -156,6 +156,7 @@ export function Navbar({
             text-muted-foreground
             transition-colors
             hover:text-foreground
+            cursor-pointer
           "
         >
           <Bell size={16} />
@@ -165,7 +166,8 @@ export function Navbar({
               absolute right-1 top-1
               h-2 w-2
               rounded-full
-              bg-[#193a29]
+              bg-primary
+              
             "
           />
         </button>
@@ -181,6 +183,7 @@ export function Navbar({
                 text-muted-foreground
                 transition-colors
                 hover:text-foreground
+                cursor-pointer
               "
             >
               <User size={16} />
@@ -205,7 +208,7 @@ export function Navbar({
           </div>
 
           <div className="p-1">
-            <LogoutButton />
+            <LogoutButton/>
           </div>
         </Dropdown>
       </div>

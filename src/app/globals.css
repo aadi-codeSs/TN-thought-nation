@@ -17,6 +17,7 @@
   /* Core */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-themecolor: var(--themecolor);
 
   /* Surfaces */
   --color-card: var(--card);
@@ -88,7 +89,7 @@
   /* Secondary */
   --secondary: oklch(0.22 0.01 285);
   --secondary-foreground: oklch(0.90 0.01 285);
-  --green: oklch(0.22 0.051 158.43);
+ --themecolor: oklch(0.22 0.051 158.43);
 
   /* Muted */
   --muted: oklch(0.18 0.01 285);

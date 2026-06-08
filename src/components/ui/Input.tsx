@@ -62,7 +62,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
                 focus-visible:border-primary
                 focus-visible:ring-2
-                focus-visible:ring-primary/20
+                focus-visible:ring-primary/40
               `
           }
 

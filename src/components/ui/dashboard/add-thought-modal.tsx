@@ -121,7 +121,7 @@ export function AddThoughtModal({
             hover:text-foreground
           "
         >
-          <X size={16} />
+          <X size={16}  className=" cursor-pointer "/>
         </button>
 
         <h2
@@ -233,6 +233,7 @@ export function AddThoughtModal({
               type="button"
               variant="outline"
               onClick={onClose}
+              className=" cursor-pointer "
             >
               Cancel
             </Button>
@@ -240,6 +241,7 @@ export function AddThoughtModal({
             <Button
               type="submit"
               isLoading={isPending}
+              className=" cursor-pointer "
             >
               Save Thought
             </Button>
