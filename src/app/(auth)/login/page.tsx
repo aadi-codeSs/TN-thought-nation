@@ -1,5 +1,6 @@
 import { LoginForm } from "@/src/components/ui/auth/login-form";
 import Link from "next/link";
+import { Suspense } from "react";
 export default function SignupPage() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-background px-4 flex flex-col gap-8">
@@ -12,7 +13,9 @@ export default function SignupPage() {
             Enter your details below to activate your system access.
           </p> */}
         </div>
-        <LoginForm/>
+        <Suspense>
+            <LoginForm/>
+        </Suspense>
       </div>
       <div className="max-w-xs items-center justify-center ">
         <p className="text-center text-sm text-muted-foreground text-left">
